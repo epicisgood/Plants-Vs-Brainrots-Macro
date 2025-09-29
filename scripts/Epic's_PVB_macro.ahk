@@ -639,7 +639,7 @@ CheckStock(index, list, crafting := false){
             SpamClick(5)
         }
 
-        if (A_index == 1) {
+        if (A_index == 20) {
             Gdip_DisposeImage(pBMScreen)
             return 0
         }
