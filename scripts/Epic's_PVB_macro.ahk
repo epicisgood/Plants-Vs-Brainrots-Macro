@@ -146,21 +146,23 @@ CheckDisconnnect(){
                 }
                 Sleep(500)
                 ActivateRoblox()
-                Sleep(25000)
-                ActivateRoblox()
+                loop 20 {
+                    if (Clickbutton("Sell", 0) == 1){
+                        break
+                    }
+                    Sleep(1000)
+                    if (A_Index == 20) { 
+                        CloseRoblox()
+                        return 0
+                    }
+                }
+                Sleep(1500)
                 ResizeRoblox()
                 GetRobloxClientPos(GetRobloxHWND())
-                MouseMove windowX + windowWidth//2, windowY + windowHeight//2
-                Sleep(500)
-                Click
-                Click
                 PlayerStatus("Game Succesfully loaded", "0x00a838", ,false)
                 Sleep(1000)
                 Send("{Tab}")
-                Send("1")
-                Sleep(300)
                 CloseChat()
-                Sleep(1500)
                 return 1
             }
             Sleep(1000)
@@ -787,6 +789,8 @@ BuyGears(){
         Walk(750, AKey)
         Sleep(500)
         Walk(200, Wkey)
+        Sleep(500)
+        Walk(250, Akey, Skey)
         Sleep(1000)
         Send("{" Ekey "}")
         if !DetectShop("gear"){
