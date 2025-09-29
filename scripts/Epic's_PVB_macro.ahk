@@ -560,8 +560,9 @@ CameraCorrection(){
     Click("Right", "Up")
     Sleep(250)
 
-    loop 10 {
-        Clickbutton("Sell") 
+    loop 5 {
+        Clickbutton("Sell")
+        Sleep(100)
         Clickbutton("Seeds") 
     }
     Sleep(500)
@@ -591,26 +592,25 @@ CheckStock(index, list, crafting := false){
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
-    captureWidth := 150
-    captureHeight := windowHeight // 2 + 100
-    captureX := windowX + (windowWidth // 2) - (captureWidth // 2) - 50
-    captureY := windowY + (windowHeight // 2) - (captureHeight // 2) + 20
     
+    captureX := windowX + windowWidth * 0.43
+    captureWidth := windowWidth * 0.1
     if (index == 1){
+        captureY := windowY + windowHeight * 0.25
         captureHeight := windowHeight * 0.2
     } else if (index == 2){
-        captureY := windowY + (windowHeight // 2) - (captureHeight // 2) + 250
+        captureY := windowY + windowHeight * 0.45
         captureHeight := windowHeight * 0.2
     } else {
-        captureY := windowY + (windowHeight // 2) - (captureHeight // 2) + 450
-        captureHeight := windowHeight * 0.15
+        captureY := windowY + windowHeight * 0.63
+        captureHeight := windowHeight * 0.175
     }
     
     pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
     If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 15,,3) = 1) {
         Cords := StrSplit(OutputList, ",")
-        x := Cords[1] + captureX - 2
-        y := Cords[2] + captureY - 10
+        x := Cords[1] + captureX 
+        y := Cords[2] + captureY - 5
         MouseMove(x, y)
         Sleep(25)
         Click
@@ -639,7 +639,7 @@ CheckStock(index, list, crafting := false){
             SpamClick(5)
         }
 
-        if (A_index == 50) {
+        if (A_index == 1) {
             Gdip_DisposeImage(pBMScreen)
             return 0
         }
@@ -648,7 +648,7 @@ CheckStock(index, list, crafting := false){
 }
 
 buyShop(itemList, itemType, crafting := false){
-    pos := 0.8
+    pos := 0.75
 
     for (item in itemlist){
         if (A_Index == 1) {
@@ -663,7 +663,14 @@ buyShop(itemList, itemType, crafting := false){
             CheckStock(A_Index, itemlist, crafting)
         }
         if !(A_Index == 1 || A_Index == 2){
-            ScrollDown(1.6)
+            if (A_ScreenHeight == 600){
+                ScrollDown(1.46)
+            } else if (A_ScreenHeight == 768){
+                ScrollDown(1.63)
+                
+            } else {
+                ScrollDown(1.61)
+            }
         }
         Sleep(250)
     }
@@ -895,8 +902,13 @@ F3::
     ; ResizeRoblox()
     ; hwnd := GetRobloxHWND()
     ; GetRobloxClientPos(hwnd)
-    ; pBMScreen := Gdip_BitmapFromScreen(windowX "|" windowY + 30 "|" windowWidth "|" windowHeight - 30)
-    ; Gdip_SaveBitmapToFile(pBMScreen,"ss.png")
+    ; capX := windowX + windowWidth * 0.43
+    ; capY := windowY + windowHeight * 0.63
+    ; capW := windowWidth * 0.1
+    ; capH := windowHeight * 0.175
+    ; pBMScreen := Gdip_BitmapFromScreen(capX "|" capY "|" capW "|" capH)
+    ; Gdip_SaveBitmapToFile(pBMScreen, "ss.png")
     ; Gdip_DisposeImage(pBMScreen)
+    ; MsgBox(A_ScreenHeight)
     PauseMacro()
 }
