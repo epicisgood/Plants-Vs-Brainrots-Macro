@@ -898,17 +898,5 @@ ShowToolTip(){
 
 F3::
 {
-    ; ActivateRoblox()
-    ; ResizeRoblox()
-    ; hwnd := GetRobloxHWND()
-    ; GetRobloxClientPos(hwnd)
-    ; capX := windowX + windowWidth * 0.43
-    ; capY := windowY + windowHeight * 0.63
-    ; capW := windowWidth * 0.1
-    ; capH := windowHeight * 0.175
-    ; pBMScreen := Gdip_BitmapFromScreen(capX "|" capY "|" capW "|" capH)
-    ; Gdip_SaveBitmapToFile(pBMScreen, "ss.png")
-    ; Gdip_DisposeImage(pBMScreen)
-    ; MsgBox(A_ScreenHeight)
     PauseMacro()
 }
