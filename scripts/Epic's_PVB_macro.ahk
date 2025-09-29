@@ -837,8 +837,12 @@ MainLoop() {
     BuyGears()
     loop {
         initShops()
-        
-        RewardInterupt()
+        if (((Mod(A_Min, 10) = 2 || Mod(A_Min, 10) = 7)) && A_Sec == 30) {
+            CameraCorrection()
+        }
+        if ((Mod(A_Min, 10) = 3 || Mod(A_Min, 10) = 8)) {
+            RewardInterupt()
+        }
 
         if (Mod(A_Index, 30) == 0){
             CloseClutter()
