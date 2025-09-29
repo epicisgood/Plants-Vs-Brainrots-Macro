@@ -9,7 +9,7 @@ let cachedData = null;
 
 async function fetchAllItems() {
   if (!cachedData) {
-    const response = await fetch('https://raw.githubusercontent.com/epicisgood/GAG-Updater/refs/heads/main/items.json');
+    const response = await fetch('https://raw.githubusercontent.com/epicisgood/PVB-Updater/refs/heads/main/items.json');
     cachedData = await response.json();
   }
   return cachedData;
@@ -29,66 +29,22 @@ async function getItemJSON(category) {
 
 async function onSaveClick() {
   const seedItems = await getItems("Seeds");
-  const seed2Items = await getItems("Seeds2");
   const gearItems = await getItems("Gears");
-  const EggItems = await getItems("Eggs");
-  const Egg2Items = await getItems("Eggs2");
-
-  const GearCraftingItems = await getItems("GearCrafting");
-
-  const SeedCraftingItems = await getItems("SeedCrafting");
-
-  const EvoSeedsItems = await getItems("EvoSeeds");
-  // const fallCosmeticsItems = await getItems("fallCosmetics");
-  // const fallGearsItems = await getItems("fallGears");
-  // const fallPetsItems = await getItems("fallPets");
 
   seedItems.push("Seeds");
-  seed2Items.push("Seeds2");
   gearItems.push("Gears");
-  EggItems.push("Eggs");
-  Egg2Items.push("Eggs2");
-  GearCraftingItems.push("GearCrafting");
-  SeedCraftingItems.push("SeedCrafting");
-  EvoSeedsItems.push("EvoSeeds");
-  // fallCosmeticsItems.push("fallCosmetics");
-  // fallGearsItems.push("fallGears");
-  // fallPetsItems.push("fallPets");
 
   const cfg = {
     url: document.getElementById('url').value,
     discordID: document.getElementById('discordID').value,
     VipLink: document.getElementById('VipLink').value,
-    TravelingMerchant: +document.getElementById('TravelingMerchant').checked,
-    Cosmetics: +document.getElementById('Cosmetics').checked,
-    CookingEvent:  +document.getElementById('CookingEvent').checked,
-    SearchList:  document.getElementById('SearchList').value,
-    CookingTime:  document.getElementById('CookingTime').value,
     seedItems: {},
-    seed2Items: {},
     gearItems: {},
-    EggItems: {},
-    Egg2Items: {},
-    GearCraftingItems: {},
-    SeedCraftingItems: {},
-    EvoSeedsItems: {},
-    // fallCosmeticsItems: {},
-    // fallGearsItems: {},
-    // fallPetsItems: {},
   };
 
   const allLists = {
     seedItems,
-    seed2Items,
     gearItems,
-    EggItems,
-    Egg2Items,
-    GearCraftingItems,
-    SeedCraftingItems,
-    EvoSeedsItems,
-    // fallCosmeticsItems,
-    // fallGearsItems,
-    // fallPetsItems,
   };
 
   for (const [listName, items] of Object.entries(allLists)) {
@@ -114,24 +70,10 @@ function applySettings(a) {
     document.getElementById('url').value       = s.url;
     document.getElementById('discordID').value = s.discordID;
     document.getElementById('VipLink').value   = s.VipLink;
-    document.getElementById('Cosmetics').checked  = !!+s.Cosmetics
-    document.getElementById('TravelingMerchant').checked  = !!+s.TravelingMerchant
-    document.getElementById('CookingEvent').checked  = !!+s.CookingEvent
-    document.getElementById('SearchList').value  = s.SearchList
-    document.getElementById('CookingTime').value  = s.CookingTime
 
     const allItems = {
       SeedItems: s.SeedItems,
-      Seed2Items: s.Seed2Items,
       GearItems: s.GearItems,
-      EggItems: s.EggItems,
-      Egg2Items: s.Egg2Items,
-      GearCraftingItems: s.GearCraftingItems,
-      SeedCraftingItems: s.SeedCraftingItems,
-      EvoSeedsItems: s.EvoSeedsItems,
-      // fallCosmeticsItems: s.fallCosmeticsItems,
-      // fallGearsItems: s.fallGearsItems,
-      // fallPetsItems: s.fallPetsItems,
     };
 
     for (const [listName, items] of Object.entries(allItems)) {
@@ -150,8 +92,7 @@ function applySettings(a) {
 
 async function AddHtml() {
   const categories = [
-    "Seeds", "Seeds2", "Gears", "Eggs","Eggs2", "GearCrafting", "SeedCrafting", "EvoSeeds"
-    // "fallPets", 'fallGears', "fallCosmetics"
+    "Seeds", "Gears",
     ];
 
   for (const category of categories) {
@@ -204,8 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       checkboxes.forEach(cb => {
         const isSelectAll = cb.classList.contains("SelectAll");
         const isEnableCheckbox = [
-          "Seeds", "Seeds2", "Gears", "Eggs","Eggs2", "EvoSeeds", 
-          // "fallPets", 'fallGears', "fallCosmetics"
+          "Seeds", "Gears"
         ].includes(cb.id);
         if (!isSelectAll && !isEnableCheckbox) {
           cb.checked = selectAllCheckbox.checked;

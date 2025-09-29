@@ -31,7 +31,7 @@ set "ver=%~5"
 :: Compose new folder name with version appended
 for %%I in ("%basefolder%") do set "parentfolder=%%~dpI"
 set "parentfolder=%parentfolder:~0,-1%"
-set "newfolder=%parentfolder%\Epics_GAG_macro_v%ver%"
+set "newfolder=%parentfolder%\Epics_PVB_macro_v%ver%"
 
 :: Create new folder
 if not exist "%newfolder%" mkdir "%newfolder%"
@@ -47,7 +47,7 @@ if "%copysettings%"=="1" (
 )
 
 :: Download ZIP to temp
-set "zipfile=%temp%\Epics_GAG_macro_v%ver%.zip"
+set "zipfile=%temp%\Epics_PVB_macro_v%ver%.zip"
 echo Downloading %url%...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('%url%', '%zipfile%')"
 echo Download complete.

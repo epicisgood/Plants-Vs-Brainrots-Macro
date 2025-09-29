@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 
-version := "v1.2.3"
+version := "v1.0.0"
 settingsFile := "settings.ini"
 
 
@@ -43,7 +43,7 @@ Alt & S:: {
 
 Start(*) {
     
-    PlayerStatus("Starting " version " Grow A Garden Macro by epic", "0xFFFF00", , false, , false)
+    PlayerStatus("Starting " version " Plants Vs Brainrots Macro by epic", "0xFFFF00", , false, , false)
     OnError (e, mode) => (mode = "return") * (-1)
     Loop {
         MainLoop() 
@@ -51,13 +51,13 @@ Start(*) {
 }
 
 ResetMacro(*) { 
-    ; PlayerStatus("Stopped Grow A Garden Macro", "0xff8800", , false, , false)
+    ; PlayerStatus("Stopped Plants Vs Brainrots Macro", "0xff8800", , false, , false)
     Send "{" Dkey " up}{" Wkey " up}{" Akey " up}{" Skey " up}{F14 up}"
     Try Gdip_Shutdown(pToken)
     Reload 
 }
 StopMacro(*) {
-    PlayerStatus("Closed Grow A Garden Macro", "0xff5e00", , false, , false)
+    PlayerStatus("Closed Plants Vs Brainrots Macro", "0xff5e00", , false, , false)
     Send "{" Dkey " up}{" Wkey " up}{" Akey " up}{" Skey " up}{F14 up}"
     Try Gdip_Shutdown(pToken)
     ExitApp()
@@ -70,11 +70,11 @@ PauseMacro(*){
     if PauseToggle {
         Pause(false) ; Unpause
         ToolTip "Macro Unpaused"
-        PlayerStatus("Unpaused Grow A Garden Macro", "0x91ff00", , false, , false)
+        PlayerStatus("Unpaused Plants Vs Brainrots Macro", "0x91ff00", , false, , false)
     } else {
         Pause(true)  ; Pause
         ToolTip "Macro Paused"
-        PlayerStatus("Paused Grow A Garden Macro", "0x003cff", , false, , false)
+        PlayerStatus("Paused Plants Vs Brainrots Macro", "0x003cff", , false, , false)
     }
     SetTimer () => ToolTip(), -1000
 }
@@ -121,23 +121,14 @@ SaveSettings(settingsJson) {
     IniFile := A_WorkingDir . "\settings.ini"
 
     for key, val in settings {
-        if (key == "url" || key == "discordID" || key == "VipLink" || key == "Cosmetics" || key == "TravelingMerchant" || key == "CookingEvent" || key == "SearchList" || key == "CookingTime") {
+        if (key == "url" || key == "discordID" || key == "VipLink") {
             IniWrite(val, IniFile, "Settings", key)
         }
     }
 
     sectionMap := Map(
         "seedItems", "Seeds",
-        "seed2Items", "Seeds2",
         "gearItems", "Gears",
-        "EggItems",  "Eggs",
-        "Egg2Items", "Eggs2",
-        "GearCraftingItems", "GearCrafting",
-        "SeedCraftingItems", "SeedCrafting",
-        "EvoSeedsItems", "EvoSeeds",
-        ; "fallCosmeticsItems", "fallCosmetics",
-        ; "fallGearsItems", "fallGears",
-        ; "fallPetsItems", "fallPets",
     )
 
     for groupName, sectionName in sectionMap {
@@ -154,112 +145,48 @@ SaveSettings(settingsJson) {
 
 SendSettings(){
 	settingsFile := A_WorkingDir . "\settings.ini"
-    seedItems := getItems("Seeds")
-    seed2Items := getItems("Seeds2")
 
+    seedItems := getItems("Seeds")
     gearItems := getItems("Gears")
 
-    EggItems := getItems("Eggs")
-    Egg2Items := getItems("Eggs2")
-
-    GearCraftingItems := getItems("GearCrafting")
-    
-    SeedCraftingItems := getItems("SeedCrafting")
-    
-    EvoSeedsItems := getItems("EvoSeeds")
-    ; fallCosmeticsItems := getItems("fallCosmetics")
-    ; fallGearsItems := getItems("fallGears")
-    ; fallPetsItems := getItems("fallPets")
-
     seedItems.Push("Seeds")
-    seed2Items.Push("Seeds2")
     gearItems.Push("Gears")
-    EggItems.Push("Eggs")
-    Egg2Items.Push("Eggs2")
-    GearCraftingItems.Push("GearCrafting")
-    SeedCraftingItems.Push("SeedCrafting")
-    EvoSeedsItems.Push("EvoSeeds")
-    ; fallCosmeticsItems.Push("fallCosmetics")
-    ; fallGearsItems.Push("fallGears")
-    ; fallPetsItems.Push("fallPets")
+
 
 
     if (!FileExist(settingsFile)) {
         IniWrite("", settingsFile, "Settings", "url")
         IniWrite("", settingsFile, "Settings", "discordID")
         IniWrite("", settingsFile, "Settings", "VipLink")
-        IniWrite("0", settingsFile, "Settings", "Cosmetics")
-        IniWrite("1", settingsFile, "Settings", "TravelingMerchant")
-        IniWrite("0", settingsFile, "Settings", "CookingEvent")
-        IniWrite("", settingsFile, "Settings", "SearchList")
-        IniWrite("", settingsFile, "Settings", "CookingTime")
         for i in seedItems {
             IniWrite("1", settingsFile, "Seeds", StrReplace(i, " ", ""))
         }
-        for i in seed2Items {
-            IniWrite("0", settingsFile, "Seeds2", StrReplace(i, " ", ""))
-        }
+
         for i in gearItems {
             IniWrite("1", settingsFile, "Gears", StrReplace(i, " ", ""))
         }
-        for i in EggItems {
-            IniWrite("1", settingsFile, "Eggs", StrReplace(i, " ", ""))
-        }
-        for i in Egg2Items {
-            IniWrite("0", settingsFile, "Eggs2", StrReplace(i, " ", ""))
-        }
-        for i in GearCraftingItems {
-            IniWrite("0", settingsFile, "GearCrafting", StrReplace(i, " ", ""))
-        }
-        for i in SeedCraftingItems {
-            IniWrite("0", settingsFile, "SeedCrafting", StrReplace(i, " ", ""))
-        }
-        for i in EvoSeedsItems {
-            IniWrite("0", settingsFile, "EvoSeeds", StrReplace(i, " ", ""))
-        }
-        ; for i in fallCosmeticsItems {
-        ;     IniWrite("0", settingsFile, "fallCosmetics", StrReplace(i, " ", ""))
-        ; }
-        ; for i in fallGearsItems {
-        ;     IniWrite("0", settingsFile, "fallGears", StrReplace(i, " ", ""))
-        ; }
-        ; for i in fallPetsItems {
-        ;     IniWrite("0", settingsFile, "fallPets", StrReplace(i, " ", ""))
-        ; }
+
         Sleep(200)
     }
 
-    Other := [
-        "TravelingMerchant",
-        "Cosmetics",
-        "CookingEvent"
-    ]
+    ; Other := [
+    ;     "TravelingMerchant",
+    ;     "Cosmetics",
+    ;     "CookingEvent"
+    ; ]
 
-    for item in Other {
-        key := StrReplace(item, " ", "")
-        value := IniRead(settingsFile, "Settings", key, "0")
-        IniWrite(value, settingsFile, "Settings", key)
-    }
+    ; for item in Other {
+    ;     key := StrReplace(item, " ", "")
+    ;     value := IniRead(settingsFile, "Settings", key, "0")
+    ;     IniWrite(value, settingsFile, "Settings", key)
+    ; }
     
     SettingsJson := { 
         url:       IniRead(settingsFile, "Settings", "url")
       , discordID: IniRead(settingsFile, "Settings", "discordID")
       , VipLink:   IniRead(settingsFile, "Settings", "VipLink")
-      , Cosmetics:  IniRead(settingsFile, "Settings", "Cosmetics")
-      , TravelingMerchant:  IniRead(settingsFile, "Settings", "TravelingMerchant")
-      , CookingEvent:  IniRead(settingsFile, "Settings", "CookingEvent")
-      , SearchList:  IniRead(settingsFile, "Settings", "SearchList")
-      , CookingTime:  IniRead(settingsFile, "Settings", "CookingTime")
       , SeedItems: Map()
-      , Seed2Items: Map()
       , GearItems: Map()
-      , EggItems:  Map()
-      , GearCraftingItems: Map()
-      , SeedCraftingItems: Map()
-      , EvoSeedsItems: Map()
-    ;   , fallCosmeticsItems: Map()
-    ;   , fallGearsItems: Map()
-    ;   , fallPetsItems: Map()
     }
 
     for item in seedItems {
@@ -267,12 +194,6 @@ SendSettings(){
         value := IniRead(settingsFile, "Seeds", key, "1")
         IniWrite(value, settingsFile, "Seeds", key)
         SettingsJson.SeedItems[item] := value
-    }
-    for item in seed2Items {
-        key := StrReplace(item, " ", "")
-        value := IniRead(settingsFile, "Seeds2", key, "0")
-        IniWrite(value, settingsFile, "Seeds2", key)
-        SettingsJson.Seed2Items[item] := value
     }
 
     for item in gearItems {
@@ -282,58 +203,7 @@ SendSettings(){
         SettingsJson.GearItems[item] := value
     }
 
-    for item in EggItems {
-        key := StrReplace(item, " ", "")
-        value := IniRead(settingsFile, "Eggs", key, "1")
-        IniWrite(value, settingsFile, "Eggs", key)
-        SettingsJson.EggItems[key] := value
-    }
 
-    for item in Egg2Items {
-        key := StrReplace(item, " ", "")
-        value := IniRead(settingsFile, "Eggs2", key, "0")
-        IniWrite(value, settingsFile, "Eggs2", key)
-        SettingsJson.EggItems[key] := value
-    }
-
-    for item in GearCraftingItems {
-        key := StrReplace(item, " ", "")
-        value := IniRead(settingsFile, "GearCrafting", key, "0")
-        IniWrite(value, settingsFile, "GearCrafting", key)
-        SettingsJson.GearCraftingItems[key] := value
-    }
-
-    for item in SeedCraftingItems {
-        key := StrReplace(item, " ", "")
-        value := IniRead(settingsFile, "SeedCrafting", key, "0")
-        IniWrite(value, settingsFile, "SeedCrafting", key)
-        SettingsJson.GearCraftingItems[key] := value
-    }
-
-    for item in EvoSeedsItems {
-        key := StrReplace(item, " ", "")
-        value := IniRead(settingsFile, "EvoSeeds", key, "0")
-        IniWrite(value, settingsFile, "EvoSeeds", key)
-        SettingsJson.EvoSeedsItems[key] := value
-    }
-    ; for item in fallCosmeticsItems {
-    ;     key := StrReplace(item, " ", "")
-    ;     value := IniRead(settingsFile, "fallCosmetics", key, "0")
-    ;     IniWrite(value, settingsFile, "fallCosmetics", key)
-    ;     SettingsJson.fallCosmeticsItems[key] := value
-    ; }
-    ; for item in fallGearsItems {
-    ;     key := StrReplace(item, " ", "")
-    ;     value := IniRead(settingsFile, "fallGears", key, "0")
-    ;     IniWrite(value, settingsFile, "fallGears", key)
-    ;     SettingsJson.fallGearsItems[key] := value
-    ; }
-    ; for item in fallPetsItems {
-    ;     key := StrReplace(item, " ", "")
-    ;     value := IniRead(settingsFile, "fallPets", key, "0")
-    ;     IniWrite(value, settingsFile, "fallPets", key)
-    ;     SettingsJson.fallPetsItems[key] := value
-    ; }
 
 
 	MyWindow.PostWebMessageAsJson(JSON.stringify(SettingsJson))
@@ -409,7 +279,7 @@ handleUpdate(ver){
 
     if choice = "Yes"
     {
-        url := "https://github.com/epicisgood/Grow-a-Garden-Macro/releases/download/v" ver "/Epics_GAG_macro_v" ver ".zip"
+        url := "https://github.com/epicisgood/Plants-Vs-Brainrots-Macro/releases/download/v" ver "/Epics_PVB_macro_v" ver ".zip"
         CopySettings := 1
         olddir := A_WorkingDir
         DeleteOld := 1
@@ -419,11 +289,11 @@ handleUpdate(ver){
     }
     else
     {
-        Run "https://github.com/epicisgood/Grow-a-Garden-Macro/releases/latest"
+        Run "https://github.com/epicisgood/Plants-Vs-Brainrots-Macro/releases/latest"
     }
 }
 
-AsyncHttpRequest("GET", "https://api.github.com/repos/epicisgood/Grow-a-Garden-Macro/releases/latest", CheckUpdate, Map("accept", "application/vnd.github+json"))
+; AsyncHttpRequest("GET", "https://api.github.com/repos/epicisgood/Plants-Vs-Brainrots-Macro/releases/latest", CheckUpdate, Map("accept", "application/vnd.github+json"))
 
 
 

@@ -11,7 +11,7 @@
     <div class="macrotitle">
           <img src="../../images/GameIcon.ico"
           style="width: 32.5px; height: 32.5px; margin-bottom: 3px; vertical-align: middle;">
-          Epic's Grow a Garden Macro
+          Epic's Plants Vs Brainrots Macro
     </div>
 
     <div class="window-controls" id="ahkTitleBar">
@@ -37,7 +37,7 @@
         Gears
       </button>
 
-      <button onclick="switchTab('Eggs tab')">
+      <!-- <button onclick="switchTab('Eggs tab')">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-egg-icon lucide-egg"><path d="M12 2C8 2 4 8 4 14a8 8 0 0 0 16 0c0-6-4-12-8-12"/></svg>
         Eggs
       </button>
@@ -45,7 +45,7 @@
       <button onclick="switchTab('Crafting tab')">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil-icon lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
         Crafting
-      </button>
+      </button> -->
 
       <button onclick="switchTab('Event tab')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-trophy-icon lucide-trophy">
@@ -99,21 +99,7 @@
           </div>
         </div>
       </div>
-    
-      <hr>
-      <h3>Tier 2 Seeds</h3>
-      <div class="rewards-grid" id="Seeds2Grid">
-        <div class="reward-box" style="font-weight: 500;">
-          <div class="reward-options">
-            <label><input type="checkbox" id="Seeds2">Enable Seeds</label>
-          </div>
-          <div style="height: 17px;"></div>
-          <div class="reward-options">
-            <label><input type="checkbox" class="SelectAll">Select All</label>
-          </div>
-        </div>
-      </div>
-      
+          
 
 
     </div>
@@ -134,181 +120,15 @@
       </div>
     </div>
 
-    <div id="Eggs tab" class="tab">  
-      <div class="rewards-grid" id="EggsGrid">
-
-      <div class="reward-box" style="font-weight: 500;">
-        <div class="reward-options">
-          <label><input type="checkbox" id="Eggs">Enable Eggs</label>
-        </div>
-        <div style="height: 17px;"></div>
-        <div class="reward-options">
-          <label><input type="checkbox" class="SelectAll">Select All</label>
-        </div>
-      </div>
-
-      </div>
-
-      <hr>
-      <h3>Tier 2 Eggs</h3>
-      <div class="rewards-grid" id="Eggs2Grid">
-        <div class="reward-box" style="font-weight: 500;">
-          <div class="reward-options">
-            <label><input type="checkbox" id="Eggs2">Enable Eggs</label>
-          </div>
-          <div style="height: 17px;"></div>
-          <div class="reward-options">
-            <label><input type="checkbox" class="SelectAll">Select All</label>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-
-    <div id="Crafting tab" class="tab">
-
-    <h3>Gear Crafting</h3>
-    <div class="rewards-grid" id="GearCraftingGrid">
-      <div class="reward-box">
-        <div class="reward-header">
-          <span>Craft Gears?</span>
-        </div>
-        <div class="reward-options">
-          <label><input type="checkbox" id="GearCrafting">Enable</label>
-        </div>
-      </div>
-    </div>
-
-
-    <hr>
-    <h3>Seed Crafting</h3>
-
-    <div class="rewards-grid" id="SeedCraftingGrid">
-      <div class="reward-box">
-        <div class="reward-header">
-          <span>Craft Seeds?</span>
-        </div>
-        <div class="reward-options">
-          <label><input type="checkbox" id="SeedCrafting">Enable</label>
-        </div>
-      </div>
-    </div>
 
 
 
-    </div>
 
 
     <div id="Event tab" class="tab">  
-      <div class="rewards-grid">
-
-        <div class="reward-box">
-          <div class="reward-header">
-            <img src="../../images/Events/theGoat.webp" style="width: 32.5px; height: 32.5px; margin-right: 3px; vertical-align: middle;">
-            <span>Traveling Merchant</span>
-          </div>
-          <div class="reward-options">
-            <label><input type="checkbox" id="TravelingMerchant">Claim</label>
-          </div>
-          
-        </div>
-
-        <div class="reward-box">
-          <div class="reward-header">
-            <img src="../../images/Events/Cosmetics.webp" style="width: 32.5px; height: 32.5px; margin-right: 3px; vertical-align: middle;">
-            <span>Cosmetics</span>
-          </div>
-          <div class="reward-options">
-            <label><input type="checkbox" id="Cosmetics">Claim</label>
-          </div>
-          
-        </div>
-
-        <div class="reward-box">
-          <div class="reward-header">
-            <img src="../../images/Events/Cooking_Kit.webp" style="width: 32.5px; height: 32.5px; margin-right: 3px; vertical-align: middle;">
-            <span>Auto Cooker</span>
-          </div>
-          <div class="reward-options">
-            <label><input type="checkbox" id="CookingEvent">Claim</label>
-          </div>
-          
-        </div>
-
-        <div class="reward-box">
-          <div class="reward-header">
-            <img src="../../images/Events/CakeIcon.webp" style="width: 32.5px; height: 32.5px; margin-right: 3px; vertical-align: middle;">
-            <span>Cooking Recipe</span>
-          </div>
-          <div class="reward-options">
-            <label><input type="text" id="SearchList" placeholder="Carrot, Banana, etc"></label>
-          </div>
-          
-        </div>
-        
-        <div class="reward-box">
-          <div class="reward-header">
-            <span>Cooking Time (Seconds)</span>
-          </div>
-          <div class="reward-options">
-            <label><input type="text" id="CookingTime" placeholder="60 (For 1 minute)"></label>
-          </div>
-          
-        </div>
-
-      </div>
-
-
-  <div class="rewards-grid" id="EvoSeedsGrid">
-      <div class="reward-box" style="font-weight: 500;">
-        <div class="reward-options">
-          <label><input type="checkbox" id="EvoSeeds">Enable Evo Seeds</label>
-        </div>
-        <div style="height: 17px;"></div>
-        <div class="reward-options">
-          <label><input type="checkbox" class="SelectAll">Select All</label>
-        </div>
-      </div>
-  </div>
-
-<!--   
-  <div class="rewards-grid" id="fallGearsGrid" style="display: none;">
-    <div class="reward-box" style="font-weight: 500;">
-      <div class="reward-options">
-        <label><input type="checkbox" id="fallGears">Enable Fall Gears</label>
-      </div>
-      <div style="height: 17px;"></div>
-      <div class="reward-options">
-        <label><input type="checkbox" class="SelectAll">Select All</label>
-        </div>
-      </div>
+      <div class="rewards-grid"></div>
+      <h1>Nothing for now...</h1>
     </div>
-    <div class="rewards-grid" id="fallPetsGrid" style="display: none;">
-      <div class="reward-box" style="font-weight: 500;">
-        <div class="reward-options">
-          <label><input type="checkbox" id="fallPets">Enable Fall Pets</label>
-        </div>
-        <div style="height: 17px;"></div>
-        <div class="reward-options">
-          <label><input type="checkbox" class="SelectAll">Select All</label>
-        </div>
-      </div>
-    </div>
-    
-    <div class="rewards-grid" id="fallCosmeticsGrid" style="display: none;">
-        <div class="reward-box" style="font-weight: 500;">
-          <div class="reward-options">
-            <label><input type="checkbox" id="fallCosmetics">Enable Fall Cosmetics</label>
-          </div>
-          <div style="height: 17px;"></div>
-          <div class="reward-options">
-            <label><input type="checkbox" class="SelectAll">Select All</label>
-          </div>
-        </div>
-    </div> -->
-    
-  </div>
   
   
 
