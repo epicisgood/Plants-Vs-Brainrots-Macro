@@ -474,7 +474,7 @@ Clickbutton(button, clickit := 1){
             x := Cords[1] + capX - 2
             y := Cords[2] + capY - 2
             MouseMove(x, y)
-            Sleep(10)
+            Sleep(100)
             Click
         }
         Gdip_DisposeImage(pBMScreen)
