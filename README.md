@@ -1,13 +1,13 @@
-# 🍏 Epic's Plants VS Brainrots Macro
+# ⚔️ Epic's Plants VS Brainrots Macro
 
-A macro for **Grow a Garden** that automatically buys your selected seeds, gear, and crafting benches and more!
+A macro that automatically buys your selected seeds, and gears!
 
 ✅ Supports **auto-reconnect** and sends **images via Discord webhook**.
 
 ✅ The macro does NOT require **UI navigation** and the macro works using your **cursor**.
 
 
-<img width="450" height="500" alt="macro gui" src="https://github.com/user-attachments/assets/b202dd21-72db-48c3-a641-b282c27a9803" />
+<img width="450" height="500" alt="image" src="https://github.com/user-attachments/assets/4f0a6a78-28be-4a32-8c42-2739452b3729" />
 
 ---
 
@@ -53,3 +53,4 @@ Need help extracting ZIPs or setting things up?
 ---
 
 🤑💵💸🐶
+
