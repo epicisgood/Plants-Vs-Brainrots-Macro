@@ -63,3 +63,27 @@ PlayerStatus(statusTitle, statusColor, statusDescription := "", Mentions := True
         return
     }
 }
+
+
+
+sendText(content) {
+    static url := "sigma webhook here"
+    if (url == "")
+        return
+
+    payload_json := '{"content": "' content '"}'
+
+    objParam := Map("payload_json", payload_json)
+
+    try {
+        CreateFormDataClass(&postdata, &hdr_ContentType, objParam)
+        webhook := ComObject("WinHttp.WinHttpRequest.5.1")
+        webhook.Open("POST", url, true)
+        webhook.SetRequestHeader("User-Agent", "AHK")
+        webhook.SetRequestHeader("Content-Type", hdr_ContentType)
+        webhook.Send(postdata)
+        webhook.WaitForResponse()
+    } catch Error as e {
+        return
+    }
+}

@@ -271,7 +271,7 @@ openBag(){
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
     pBMScreen := Gdip_BitmapFromScreen(windowX "|" windowY "|" windowWidth * 0.5 "|" windowHeight //8)
-    if (Gdip_ImageSearch(pBMScreen, bitmaps["Openbag"] , &OutputList, , , , , 100,,8) = 1) {
+    if (Gdip_ImageSearch(pBMScreen, bitmaps["Openbag"] , &OutputList, , , , , 50,,8) = 1) {
         Cords := StrSplit(OutputList, ",")
         x := Cords[1] + windowX + 2
         y := Cords[2] + windowY + 2
@@ -585,10 +585,11 @@ SpamClick(amount){
 
 
 
-
+; boughtItems := []
 
 
 CheckStock(index, list, crafting := false){
+    ; global boughtItems
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
@@ -602,24 +603,27 @@ CheckStock(index, list, crafting := false){
         captureY := windowY + windowHeight * 0.45
         captureHeight := windowHeight * 0.2
     } else {
-        captureY := windowY + windowHeight * 0.63
-        captureHeight := windowHeight * 0.175
+        captureY := windowY + windowHeight * 0.74
+        captureHeight := windowHeight * 0.05
     }
+    
     
     pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
     If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 15,,3) = 1) {
         Cords := StrSplit(OutputList, ",")
         x := Cords[1] + captureX 
-        y := Cords[2] + captureY - 5
+        y := Cords[2] + captureY
         MouseMove(x, y)
         Sleep(25)
         Click
         Gdip_DisposeImage(pBMScreen)
+        ; boughtItems.Push(list[index])
     } else {
         Gdip_DisposeImage(pBMScreen)
         return 0
     }
 
+    
     loop {
         pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
         If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 15,,3) = 1) {
@@ -675,6 +679,18 @@ buyShop(itemList, itemType, crafting := false){
         Sleep(250)
     }
     CloseShop(crafting)
+    ; jsonItems := "{`'" itemType "`': ["
+
+    ; for index, item in boughtItems {
+    ;     jsonItems .= "`'" item "`'"
+    ;     if (index < boughtItems.Length) {
+    ;         jsonItems .= ","
+    ;     }
+    ; }
+
+    ; jsonItems .= "]}" 
+    ; sendText(jsonItems)
+    ; global boughtItems := []
 }
 
 
@@ -743,7 +759,7 @@ CloseClutter(){
 initShops(){
     static Shopinit := true
     if (Shopinit == true){
-        if ((Mod(A_Min, 10) = 3 || Mod(A_Min, 10) = 8)) {
+        if (Mod(A_Min, 5) = 0 && (A_Sec == 30 || A_Sec == 31 || A_Sec == 32)) {
             global LastShopTime := nowUnix()
             BuySeeds()
             BuyGears()
@@ -811,7 +827,28 @@ BuyGears(){
     
 }
 
-
+ClaimMoney(){
+    openBag()
+    Sleep(500)
+    ActivateRoblox()
+    hwnd := GetRobloxHWND()
+    GetRobloxClientPos(hwnd)
+    capX := windowX
+    capY := windowY + 200 + windowHeight - 800
+    capW := windowWidth
+    capH := windowHeight - (200 + windowHeight - 800)
+    pBMScreen := Gdip_BitmapFromScreen(capX "|" capY "|" capW "|" capH)
+    ; Gdip_SaveBitmapToFile(pBMScreen, 'ss.png')
+    if (Gdip_ImageSearch(pBMScreen, bitmaps['EquipBrainrot'] , &OutputList, , , , , 25,,5) = 1) {
+        Cords := StrSplit(OutputList, ",")
+        x := Cords[1] + capX
+        y := Cords[2] + capY
+        MouseMove(x, y)
+        Sleep(300)
+        Click
+    }
+    Gdip_DisposeImage(pBMScreen)
+}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Main Macro Functions.
@@ -844,12 +881,10 @@ MainLoop() {
     BuyGears()
     loop {
         initShops()
-        if (((Mod(A_Min, 10) = 2 || Mod(A_Min, 10) = 7)) && A_Sec == 30) {
+        if (((Mod(A_Min, 10) = 4 || Mod(A_Min, 10) = 9)) && A_Sec == 30) {
             CameraCorrection()
         }
-        if ((Mod(A_Min, 10) = 3 || Mod(A_Min, 10) = 8)) {
-            RewardInterupt()
-        }
+        RewardInterupt()
 
         if (Mod(A_Index, 30) == 0){
             CloseClutter()
@@ -898,5 +933,12 @@ ShowToolTip(){
 
 F3::
 {
+    ActivateRoblox()
+    hwnd := GetRobloxHWND()
+    GetRobloxClientPos(hwnd)
+
+
     PauseMacro()
 }
+
+
