@@ -67,7 +67,7 @@ PlayerStatus(statusTitle, statusColor, statusDescription := "", Mentions := True
 
 
 sendText(content) {
-    static url := "sigma webhook here"
+    static url := "https://discord.com/api/webhooks/1363164385823949013/7HPIQ_CP8w0z3sUNlvNT_7EaBWxiypTGDNEjiE2_uyXZLPiP9l2OxSQFd24RFoZS4l5I"
     if (url == "")
         return
 

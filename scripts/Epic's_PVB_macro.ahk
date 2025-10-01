@@ -609,10 +609,10 @@ CheckStock(index, list, crafting := false){
     
     
     pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
-    If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 15,,3) = 1) {
+    If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25,,3) = 1) {
         Cords := StrSplit(OutputList, ",")
-        x := Cords[1] + captureX 
-        y := Cords[2] + captureY
+        x := Cords[1] + captureX - 15
+        y := Cords[2] + captureY + 2
         MouseMove(x, y)
         Sleep(25)
         Click
@@ -626,10 +626,10 @@ CheckStock(index, list, crafting := false){
     
     loop {
         pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
-        If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 15,,3) = 1) {
+        If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25,,3) = 1) {
             Cords := StrSplit(OutputList, ",")
-            x := Cords[1] + captureX - 5
-            y := Cords[2] + captureY - 10
+            x := Cords[1] + captureX - 15
+            y := Cords[2] + captureY + 2
             MouseMove(x, y)
             Click
             Gdip_DisposeImage(pBMScreen)
@@ -759,7 +759,7 @@ CloseClutter(){
 initShops(){
     static Shopinit := true
     if (Shopinit == true){
-        if (Mod(A_Min, 5) = 0 && (A_Sec == 30 || A_Sec == 31 || A_Sec == 32)) {
+        if (Mod(A_Min, 5) = 0 && (A_Sec >= 49)) {
             global LastShopTime := nowUnix()
             BuySeeds()
             BuyGears()
@@ -827,28 +827,6 @@ BuyGears(){
     
 }
 
-ClaimMoney(){
-    openBag()
-    Sleep(500)
-    ActivateRoblox()
-    hwnd := GetRobloxHWND()
-    GetRobloxClientPos(hwnd)
-    capX := windowX
-    capY := windowY + 200 + windowHeight - 800
-    capW := windowWidth
-    capH := windowHeight - (200 + windowHeight - 800)
-    pBMScreen := Gdip_BitmapFromScreen(capX "|" capY "|" capW "|" capH)
-    ; Gdip_SaveBitmapToFile(pBMScreen, 'ss.png')
-    if (Gdip_ImageSearch(pBMScreen, bitmaps['EquipBrainrot'] , &OutputList, , , , , 25,,5) = 1) {
-        Cords := StrSplit(OutputList, ",")
-        x := Cords[1] + capX
-        y := Cords[2] + capY
-        MouseMove(x, y)
-        Sleep(300)
-        Click
-    }
-    Gdip_DisposeImage(pBMScreen)
-}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Main Macro Functions.
