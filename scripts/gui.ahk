@@ -44,7 +44,7 @@ Alt & S:: {
 Start(*) {
     
     PlayerStatus("Starting " version " Plants Vs Brainrots Macro by epic", "0xFFFF00", , false, , false)
-    ; OnError (e, mode) => (mode = "return") * (-1)
+    OnError (e, mode) => (mode = "return") * (-1)
     Loop {
         MainLoop() 
     }
