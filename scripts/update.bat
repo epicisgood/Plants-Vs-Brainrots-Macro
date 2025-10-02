@@ -65,7 +65,7 @@ echo ZIP deleted.
 
 :: Start Macro
 echo Starting Macro...
-start "" "%newfolder%\scripts\AutoHotkey32.exe" "%newfolder%\scripts\Epic's_GAG_macro.ahk"
+start "" "%newfolder%\scripts\AutoHotkey32.exe" "%newfolder%\scripts\Epic's_PVB_macro.ahk"
 
 :: Delete old folder if requested
 if "%deleteold%"=="1" (

@@ -585,11 +585,9 @@ SpamClick(amount){
 
 
 
-; boughtItems := []
 
 
 CheckStock(index, list, crafting := false){
-    ; global boughtItems
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
@@ -609,15 +607,14 @@ CheckStock(index, list, crafting := false){
     
     
     pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
-    If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25,,3) = 1) {
+    If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25) = 1) {
         Cords := StrSplit(OutputList, ",")
-        x := Cords[1] + captureX - 15
-        y := Cords[2] + captureY + 2
+        x := Cords[1] + captureX
+        y := Cords[2] + captureY 
         MouseMove(x, y)
         Sleep(25)
         Click
         Gdip_DisposeImage(pBMScreen)
-        ; boughtItems.Push(list[index])
     } else {
         Gdip_DisposeImage(pBMScreen)
         return 0
@@ -626,10 +623,10 @@ CheckStock(index, list, crafting := false){
     
     loop {
         pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
-        If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25,,3) = 1) {
+        If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25) = 1) {
             Cords := StrSplit(OutputList, ",")
-            x := Cords[1] + captureX - 15
-            y := Cords[2] + captureY + 2
+            x := Cords[1] + captureX
+            y := Cords[2] + captureY 
             MouseMove(x, y)
             Click
             Gdip_DisposeImage(pBMScreen)
@@ -673,24 +670,13 @@ buyShop(itemList, itemType, crafting := false){
                 ScrollDown(1.63)
                 
             } else {
-                ScrollDown(1.61)
+                ScrollDown(1.5825)
             }
         }
         Sleep(250)
     }
     CloseShop(crafting)
-    ; jsonItems := "{`'" itemType "`': ["
 
-    ; for index, item in boughtItems {
-    ;     jsonItems .= "`'" item "`'"
-    ;     if (index < boughtItems.Length) {
-    ;         jsonItems .= ","
-    ;     }
-    ; }
-
-    ; jsonItems .= "]}" 
-    ; sendText(jsonItems)
-    ; global boughtItems := []
 }
 
 
@@ -914,7 +900,6 @@ F3::
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
-
 
     PauseMacro()
 }

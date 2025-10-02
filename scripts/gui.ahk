@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 
-version := "v1.0.0"
+version := "v0.0.0"
 settingsFile := "settings.ini"
 
 
@@ -293,7 +293,7 @@ handleUpdate(ver){
     }
 }
 
-; AsyncHttpRequest("GET", "https://api.github.com/repos/epicisgood/Plants-Vs-Brainrots-Macro/releases/latest", CheckUpdate, Map("accept", "application/vnd.github+json"))
+AsyncHttpRequest("GET", "https://api.github.com/repos/epicisgood/Plants-Vs-Brainrots-Macro/releases/latest", CheckUpdate, Map("accept", "application/vnd.github+json"))
 
 
 
