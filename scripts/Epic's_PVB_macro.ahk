@@ -601,11 +601,12 @@ CheckStock(index, list, crafting := false){
         captureY := windowY + windowHeight * 0.45
         captureHeight := windowHeight * 0.2
     } else {
-        captureY := windowY + windowHeight * 0.74
-        captureHeight := windowHeight * 0.05
+        captureY := windowY + windowHeight * 0.75
+        captureHeight := windowHeight * 0.07
     }
     
-    
+    x := 0
+    y := 0
     pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
     If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25) = 1) {
         Cords := StrSplit(OutputList, ",")
@@ -623,10 +624,7 @@ CheckStock(index, list, crafting := false){
     
     loop {
         pBMScreen := Gdip_BitmapFromScreen(captureX "|" captureY "|" captureWidth "|" captureHeight)
-        If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], &OutputList, , , , , 25) = 1) {
-            Cords := StrSplit(OutputList, ",")
-            x := Cords[1] + captureX
-            y := Cords[2] + captureY + 2
+        If (Gdip_ImageSearch(pBMScreen, bitmaps["GreenStock"], , , , , , 25) = 1) {
             MouseMove(x, y)
             Click
             Gdip_DisposeImage(pBMScreen)
