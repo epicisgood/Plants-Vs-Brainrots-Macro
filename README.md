@@ -7,7 +7,8 @@ A macro that automatically buys your selected seeds, and gears!
 ✅ The macro does NOT require **UI navigation** and the macro works using your **cursor**.
 
 
-<img width="450" height="500" alt="image" src="https://github.com/user-attachments/assets/64119d78-dd1a-441b-aa19-fd90f8ec0541" />
+<img width="450" height="500" alt="image" src="https://github.com/user-attachments/assets/00155580-cb3e-4e31-8c92-cc88e5e35f6f" />
+
 
 ---
 
@@ -53,5 +54,6 @@ Need help extracting ZIPs or setting things up?
 ---
 
 🤑💵💸🐶
+
 
 
