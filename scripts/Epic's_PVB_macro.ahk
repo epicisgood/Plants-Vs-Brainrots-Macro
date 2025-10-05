@@ -634,9 +634,6 @@ CheckStock(index, list, crafting := false){
             PlayerStatus("Bought " list[index] "s!", "0x22e6a8",,false)
             return 1
         }
-        if (A_index >= 5){
-            SpamClick(5)
-        }
 
         if (A_index == 20) {
             Gdip_DisposeImage(pBMScreen)
