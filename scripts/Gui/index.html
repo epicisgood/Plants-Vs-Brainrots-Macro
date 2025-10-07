@@ -4,20 +4,28 @@
   <meta charset="UTF-8" />
   <title>Epic's PVB Macro UI</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
   <div class="container">
-    <div class="macrotitle">
-          <img src="../../images/GameIcon.ico"
-          style="width: 32.5px; height: 32.5px; margin-bottom: 3px; vertical-align: middle;">
-          Epic's Plants Vs Brainrots Macro
+    <div class="titlebar" id="ahkTitleBar">
+      <div class="title">
+        <img src="../../images/GameIcon.ico" style="width: 20px; height: 20px; border-radius: 6px; vertical-align: middle;">
+        Epic's Plants Vs Brainrots Macro
+      </div>
+      <div class="window-controls">
+        <button class="window-btn minimize" onclick="ahk.global.WinMinimize('A')" aria-label="Minimize">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="window-btn close" onclick="ahk.global.WinClose('A')" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <div class="window-controls" id="ahkTitleBar">
-        <button class="minimizeButton" onclick="ahk.global.WinMinimize('A')">_</button>
-        <button class="closeButton" onclick="ahk.global.WinClose('A')">x</button>
-    </div>
     <div class="tabs">
       <button onclick="switchTab('main tab')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-house-icon lucide-house">
@@ -61,33 +69,40 @@
     </div>
 
     <div id="main tab" class="tab active">
-      <label>Webhook URL:</label>
-      <input type="text" id="url" placeholder="https://discord.com/api/webhooks/WebhookHere">
+      <div class="cards-grid">
+        <div class="card input-card">
+          <div class="card-title">Webhook URL</div>
+          <input type="text" id="url" placeholder="https://discord.com/api/webhooks/WebhookHere">
+        </div>
 
-      <label>Discord ID:</label>
-      <input type="text" id="discordID" placeholder="1234567890">
+        <div class="card input-card">
+          <div class="card-title">Discord ID</div>
+          <input type="text" id="discordID" placeholder="1234567890">
+        </div>
 
-      <label>Private Link:</label>
-      <input type="text" id="VipLink" placeholder="https://www.roblox.com/games/126884695634066/Grow-a-Garden?privateServerLinkCode=28062830835932767537940880155560">
+        <div class="card input-card">
+          <div class="card-title">Private Link</div>
+          <input type="text" id="VipLink" placeholder="https://www.roblox.com/games/126884695634066/Grow-a-Garden?privateServerLinkCode=28062830835932767537940880155560">
+        </div>
 
-      <div class="donate-section">
-        <div class="credits">
-          <span>Macro By: _epic. </span>
-          <div></div>
-          <span id="random-message"></span>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div class="card info-card">
+          <div class="credits">
+            <span>Macro By: _epic.</span>
+            <div></div>
+            <span id="random-message"></span>
+            <div></div>
+            <div></div>
+            <div></div>
             <div>
               <img class="discord-btn" onclick="ahk.global.run('https://discord.gg/Vc465gUXHk')" alt="Discord!" src="../../images/Other/discordButton.png">
               <img class="donate-btn" onclick="ahk.global.run('https://www.roblox.com/games/18130765440/Grow-a-Garden-Donation-Area#!/store')" src="../../images/Other/donateButton.png" alt="Donate Here!">
             </div>
+          </div>
         </div>
       </div>
     </div>
 
-
-    <div id="Seeds tab" class="tab">  
+    <div id="Seeds tab" class="tab">
       <div class="rewards-grid" id="SeedsGrid">
         <div class="reward-box" style="font-weight: 500;">
           <div class="reward-options">
@@ -99,44 +114,49 @@
           </div>
         </div>
       </div>
-          
-
-
     </div>
 
-    <div id="Gears tab" class="tab">  
+    <div id="Gears tab" class="tab">
       <div class="rewards-grid" id="GearsGrid">
-
-      <div class="reward-box" style="font-weight: 500;">
-        <div class="reward-options">
-          <label><input type="checkbox" id="Gears">Enable Gears</label>
+        <div class="reward-box" style="font-weight: 500;">
+          <div class="reward-options">
+            <label><input type="checkbox" id="Gears">Enable Gears</label>
+          </div>
+          <div style="height: 17px;"></div>
+          <div class="reward-options">
+            <label><input type="checkbox" class="SelectAll">Select All</label>
+          </div>
         </div>
-        <div style="height: 17px;"></div>
-        <div class="reward-options">
-          <label><input type="checkbox" class="SelectAll">Select All</label>
-        </div>
-      </div>
-
       </div>
     </div>
 
-
-
-
-
-
-    <div id="Event tab" class="tab">  
+    <div id="Event tab" class="tab">
       <div class="rewards-grid"></div>
       <h1>Nothing for now...</h1>
     </div>
-  
-  
 
     <hr>
     <div class="footer">
-      <button onclick="ahk.ButtonClick.Func('Start')">Start (F1)</button>
-      <button onclick="ahk.ButtonClick.Func('Stop')">Stop (F2)</button>
-      <button onclick="onSaveClick(this)" class="saveButton">Save All</button>
+      <button class="startButton" onclick="ahk.ButtonClick.Func('Start')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M6 5l12 7-12 7V5" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"/>
+        </svg>
+        Start (F1)
+      </button>
+      <button class="stopButton" onclick="ahk.ButtonClick.Func('Stop')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <rect x="7" y="7" width="10" height="10" rx="2" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"/>
+        </svg>
+        Stop (F2)
+      </button>
+      <button onclick="onSaveClick(this)" class="saveButton">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 5v10" stroke-linecap="round" stroke-width="2"/>
+          <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <path d="M5 19h14" stroke-linecap="round" stroke-width="2"/>
+        </svg>
+        Save All
+      </button>
     </div>
   </div>
 

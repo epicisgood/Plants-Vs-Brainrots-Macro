@@ -25,7 +25,7 @@ MyWindow.OnEvent("Close", (*) => StopMacro())
 MyWindow.AddHostObjectToScript("ButtonClick", { func: WebButtonClickEvent })
 MyWindow.AddHostObjectToScript("Save", { func: SaveSettings })
 MyWindow.AddHostObjectToScript("ReadSettings", { func: SendSettings })
-MyWindow.Show("w650 h450")
+MyWindow.Show("w650 h800")
 
 
 
