@@ -18,7 +18,8 @@ RewardChecker() {
     if (currentTime - LastShopTime >= 300) {
         LastShopTime := currentTime
         Rewardlist.Push("Seeds")
-        Rewardlist.Push("Gears")        
+        Rewardlist.Push("Gears")  
+        Rewardlist.Push("HitList")      
     }
 
     return Rewardlist
@@ -37,6 +38,9 @@ RewardInterupt() {
         }
         if (v = "Gears") {
             BuyGears()
+        }
+        if (v = "HitList") {
+            HitList()
         }
     }
     
