@@ -284,7 +284,7 @@ openBag(){
 }
 
 closeBag(){
-    relativeMouseMove(0.95, 0.5)
+    relativeMouseMove(0.95, 0.8)
     Click
     Sleep(500)
 }
@@ -842,6 +842,7 @@ MainLoop() {
     BuySeeds()
     BuyGears()
     HitList()
+    EquipBestBrainrots()
     loop {
         initShops()
         if (((Mod(A_Min, 10) = 4 || Mod(A_Min, 10) = 9)) && A_Sec == 30) {
@@ -872,6 +873,7 @@ ShowToolTip(){
     static SeedsEnabled := IniRead(settingsFile, "Seeds", "Seeds") + 0
     static GearsEnabled := IniRead(settingsFile, "Gears", "Gears") + 0
     static HitListEnabled := IniRead(settingsFile, "Settings", "HitList") + 0
+    static EquipBestEnabled := IniRead(settingsFile, "Settings", "EquipBest") + 0
 
     currentTime := nowUnix()
 
@@ -891,6 +893,11 @@ ShowToolTip(){
         static HitListTime := 300
         HitListRemaining := Max(0, HitListTime - (currentTime - LastShopTime))
         tooltipText .= "HitList: " (HitListRemaining // 60) ":" Format("{:02}", Mod(HitListRemaining, 60)) "`n"
+    }
+    if (EquipBestEnabled) {
+        static EquipBestTime := 300
+        EquipBestRemaining := Max(0, EquipBestTime - (currentTime - LastShopTime))
+        tooltipText .= "EquipBest: " (EquipBestRemaining // 60) ":" Format("{:02}", Mod(EquipBestRemaining, 60)) "`n"
     }
 
 
@@ -927,13 +934,34 @@ HitList(){
 
 }
 
+EquipBestBrainrots(){
+    if !(CheckSetting("Settings", "EquipBest")){
+        return
+    }
+    openBag()
+    pbmScreen := Gdip_BitmapFromScreen(windowX "|" windowY "|" windowWidth "|" windowHeight)
+    if (Gdip_ImageSearch(pbmScreen, bitmaps["Equip Best"], &OutputList, , , , , 25) = 1) {
+        Cords := StrSplit(OutputList, ",")
+        x := Cords[1] + windowX
+        y := Cords[2] + windowY
+        MouseMove(x, y)
+        Sleep(300)
+        Click
+        Sleep(500)
+    }
+    Sleep(1000)
+    closeBag()
+    PlayerStatus("Equipped Best Brainrots!", "0x22e6a8",,false,,false)
+    CloseClutter()
+    Gdip_DisposeImage(pbmScreen)
+    return 1
+}
 
 F3::
 {
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
-    ; HitList()
     PauseMacro()
 }
 

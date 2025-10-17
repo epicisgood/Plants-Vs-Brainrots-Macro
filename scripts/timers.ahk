@@ -20,6 +20,7 @@ RewardChecker() {
         Rewardlist.Push("Seeds")
         Rewardlist.Push("Gears")  
         Rewardlist.Push("HitList")      
+        Rewardlist.Push("EquipBest")      
     }
 
     return Rewardlist
@@ -41,6 +42,9 @@ RewardInterupt() {
         }
         if (v = "HitList") {
             HitList()
+        }
+        if (v = "EquipBest") {
+            EquipBestBrainrot()
         }
     }
     
