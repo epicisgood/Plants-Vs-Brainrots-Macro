@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 
-version := "v1.0.3"
+version := "v1.0.4"
 settingsFile := "settings.ini"
 
 
@@ -120,7 +120,7 @@ SaveSettings(settingsJson) {
     settings := JSON.Parse(settingsJson)
     IniFile := A_WorkingDir . "\settings.ini"
     for key, val in settings {
-        if (key == "url" || key == "discordID" || key == "VipLink" || key == "HitList" || key == "EquipBest") {
+        if (key == "url" || key == "discordID" || key == "VipLink" || key == "EquipBest") {
             IniWrite(val, IniFile, "Settings", key)
         }
     }
@@ -157,7 +157,7 @@ SendSettings(){
         IniWrite("", settingsFile, "Settings", "url")
         IniWrite("", settingsFile, "Settings", "discordID")
         IniWrite("", settingsFile, "Settings", "VipLink")
-        IniWrite("", settingsFile, "Settings", "HitList")
+        ; IniWrite("", settingsFile, "Settings", "HitList")
         IniWrite("", settingsFile, "Settings", "EquipBest")
         for i in seedItems {
             IniWrite("1", settingsFile, "Seeds", StrReplace(i, " ", ""))
@@ -171,7 +171,8 @@ SendSettings(){
     }
 
     Other := [
-        "HitList", "EquipBest"
+        "EquipBest"
+        ; ,"HitList"
     ]
 
     for item in Other {
@@ -184,7 +185,7 @@ SendSettings(){
         url:       IniRead(settingsFile, "Settings", "url")
       , discordID: IniRead(settingsFile, "Settings", "discordID")
       , VipLink:   IniRead(settingsFile, "Settings", "VipLink")
-      , HitList: IniRead(settingsFile, "Settings", "HitList")
+    ;   , HitList: IniRead(settingsFile, "Settings", "HitList")
       , EquipBest: IniRead(settingsFile, "Settings", "EquipBest")
       , SeedItems: Map()
       , GearItems: Map()

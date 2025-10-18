@@ -841,7 +841,7 @@ MainLoop() {
     CameraCorrection()
     BuySeeds()
     BuyGears()
-    HitList()
+    ; HitList()
     EquipBestBrainrots()
     loop {
         initShops()
@@ -872,7 +872,7 @@ ShowToolTip(){
 
     static SeedsEnabled := IniRead(settingsFile, "Seeds", "Seeds") + 0
     static GearsEnabled := IniRead(settingsFile, "Gears", "Gears") + 0
-    static HitListEnabled := IniRead(settingsFile, "Settings", "HitList") + 0
+    ; static HitListEnabled := IniRead(settingsFile, "Settings", "HitList") + 0
     static EquipBestEnabled := IniRead(settingsFile, "Settings", "EquipBest") + 0
 
     currentTime := nowUnix()
@@ -889,11 +889,11 @@ ShowToolTip(){
         GearRemaining := Max(0, GearTime - (currentTime - LastShopTime))
         tooltipText .= "Gears: " (GearRemaining // 60) ":" Format("{:02}", Mod(GearRemaining, 60)) "`n"
     }
-    if (HitListEnabled) {
-        static HitListTime := 300
-        HitListRemaining := Max(0, HitListTime - (currentTime - LastShopTime))
-        tooltipText .= "HitList: " (HitListRemaining // 60) ":" Format("{:02}", Mod(HitListRemaining, 60)) "`n"
-    }
+    ; if (HitListEnabled) {
+    ;     static HitListTime := 300
+    ;     HitListRemaining := Max(0, HitListTime - (currentTime - LastShopTime))
+    ;     tooltipText .= "HitList: " (HitListRemaining // 60) ":" Format("{:02}", Mod(HitListRemaining, 60)) "`n"
+    ; }
     if (EquipBestEnabled) {
         static EquipBestTime := 300
         EquipBestRemaining := Max(0, EquipBestTime - (currentTime - LastShopTime))
@@ -905,34 +905,34 @@ ShowToolTip(){
 }
 
 
-HitList(){
-    if !(CheckSetting("Settings", "HitList")){
-        return
-    }
-    PlayerStatus("Going to Claim hitlist!", "0x22e6a8",,false,,false)
-    relativeMouseMove(0.5, 0.5)
-    Sleep(500)
-    Clickbutton("Garden")
-    Sleep(1000)
-    Walk(2300,Dkey)
-    Walk(600,Wkey)
-    Sleep(1000)
-    Walk(3600, WKey)
-    Sleep(1000)
-    relativeMouseMove(0.5, 0.425)
-    Sleep(100)
-    Click
-    relativeMouseMove(0.5, 0.4)
-    Click
-    Walk(500, Akey)
-    Sleep(500)
-    Send("{" Ekey "}")
-    Sleep(1000)
-    PlayerStatus("Claimed hitlist!", "0x22e6a8",,false)
-    CloseClutter()
-    return 1
+; HitList(){
+;     if !(CheckSetting("Settings", "HitList")){
+;         return
+;     }
+;     PlayerStatus("Going to Claim hitlist!", "0x22e6a8",,false,,false)
+;     relativeMouseMove(0.5, 0.5)
+;     Sleep(500)
+;     Clickbutton("Garden")
+;     Sleep(1000)
+;     Walk(2300,Dkey)
+;     Walk(600,Wkey)
+;     Sleep(1000)
+;     Walk(3600, WKey)
+;     Sleep(1000)
+;     relativeMouseMove(0.5, 0.425)
+;     Sleep(100)
+;     Click
+;     relativeMouseMove(0.5, 0.4)
+;     Click
+;     Walk(500, Akey)
+;     Sleep(500)
+;     Send("{" Ekey "}")
+;     Sleep(1000)
+;     PlayerStatus("Claimed hitlist!", "0x22e6a8",,false)
+;     CloseClutter()
+;     return 1
 
-}
+; }
 
 EquipBestBrainrots(){
     if !(CheckSetting("Settings", "EquipBest")){

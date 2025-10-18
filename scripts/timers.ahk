@@ -19,7 +19,7 @@ RewardChecker() {
         LastShopTime := currentTime
         Rewardlist.Push("Seeds")
         Rewardlist.Push("Gears")  
-        Rewardlist.Push("HitList")      
+        ; Rewardlist.Push("HitList")      
         Rewardlist.Push("EquipBest")      
     }
 
@@ -40,9 +40,9 @@ RewardInterupt() {
         if (v = "Gears") {
             BuyGears()
         }
-        if (v = "HitList") {
-            HitList()
-        }
+        ; if (v = "HitList") {
+        ;     HitList()
+        ; }
         if (v = "EquipBest") {
             EquipBestBrainrot()
         }
