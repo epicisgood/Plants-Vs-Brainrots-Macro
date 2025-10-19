@@ -38,7 +38,7 @@ async function onSaveClick() {
     url: document.getElementById('url').value,
     discordID: document.getElementById('discordID').value,
     VipLink: document.getElementById('VipLink').value,
-    // HitList: +document.getElementById('HitList').checked,
+    invasion: +document.getElementById('invasion').checked,
     EquipBest: +document.getElementById('EquipBest').checked,
     seedItems: {},
     gearItems: {},
@@ -71,7 +71,7 @@ function applySettings(a) {
 
     document.getElementById('url').value       = s.url;
     document.getElementById('discordID').value = s.discordID;
-    // document.getElementById('HitList').checked  = !!+s.HitList
+    document.getElementById('invasion').checked  = !!+s.invasion
     document.getElementById('EquipBest').checked  = !!+s.EquipBest
     document.getElementById('VipLink').value   = s.VipLink;
 

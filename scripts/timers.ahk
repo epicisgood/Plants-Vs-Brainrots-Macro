@@ -4,11 +4,11 @@ nowUnix() {
 
 
 LastShopTime := nowUnix()
-
+LastInvasionTime := nowUnix()
 
 
 RewardChecker() {
-    global LastShopTime
+    global LastShopTime, LastInvasionTime
 
     Rewardlist := []
 
@@ -19,8 +19,11 @@ RewardChecker() {
         LastShopTime := currentTime
         Rewardlist.Push("Seeds")
         Rewardlist.Push("Gears")  
-        ; Rewardlist.Push("HitList")      
         Rewardlist.Push("EquipBest")      
+    }
+    if (currentTime - LastInvasionTime >= 1860) {
+        LastInvasionTime := currentTime
+        Rewardlist.Push("invasion")      
     }
 
     return Rewardlist
@@ -40,11 +43,11 @@ RewardInterupt() {
         if (v = "Gears") {
             BuyGears()
         }
-        ; if (v = "HitList") {
-        ;     HitList()
-        ; }
+        if (v = "invasion") {
+            invasion()
+        }
         if (v = "EquipBest") {
-            EquipBestBrainrot()
+            EquipBestBrainrots()
         }
     }
     

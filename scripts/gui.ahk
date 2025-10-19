@@ -120,7 +120,7 @@ SaveSettings(settingsJson) {
     settings := JSON.Parse(settingsJson)
     IniFile := A_WorkingDir . "\settings.ini"
     for key, val in settings {
-        if (key == "url" || key == "discordID" || key == "VipLink" || key == "EquipBest") {
+        if (key == "url" || key == "discordID" || key == "VipLink" || key == "EquipBest" || key == "invasion") {
             IniWrite(val, IniFile, "Settings", key)
         }
     }
@@ -157,7 +157,7 @@ SendSettings(){
         IniWrite("", settingsFile, "Settings", "url")
         IniWrite("", settingsFile, "Settings", "discordID")
         IniWrite("", settingsFile, "Settings", "VipLink")
-        ; IniWrite("", settingsFile, "Settings", "HitList")
+        IniWrite("", settingsFile, "Settings", "invasion")
         IniWrite("", settingsFile, "Settings", "EquipBest")
         for i in seedItems {
             IniWrite("1", settingsFile, "Seeds", StrReplace(i, " ", ""))
@@ -172,7 +172,7 @@ SendSettings(){
 
     Other := [
         "EquipBest"
-        ; ,"HitList"
+        ,"invasion"
     ]
 
     for item in Other {
@@ -185,7 +185,7 @@ SendSettings(){
         url:       IniRead(settingsFile, "Settings", "url")
       , discordID: IniRead(settingsFile, "Settings", "discordID")
       , VipLink:   IniRead(settingsFile, "Settings", "VipLink")
-    ;   , HitList: IniRead(settingsFile, "Settings", "HitList")
+      , invasion: IniRead(settingsFile, "Settings", "invasion")
       , EquipBest: IniRead(settingsFile, "Settings", "EquipBest")
       , SeedItems: Map()
       , GearItems: Map()

@@ -841,7 +841,7 @@ MainLoop() {
     CameraCorrection()
     BuySeeds()
     BuyGears()
-    ; HitList()
+    invasion()
     EquipBestBrainrots()
     loop {
         initShops()
@@ -872,7 +872,7 @@ ShowToolTip(){
 
     static SeedsEnabled := IniRead(settingsFile, "Seeds", "Seeds") + 0
     static GearsEnabled := IniRead(settingsFile, "Gears", "Gears") + 0
-    ; static HitListEnabled := IniRead(settingsFile, "Settings", "HitList") + 0
+    static invasionEnabled := IniRead(settingsFile, "Settings", "invasion") + 0
     static EquipBestEnabled := IniRead(settingsFile, "Settings", "EquipBest") + 0
 
     currentTime := nowUnix()
@@ -889,11 +889,11 @@ ShowToolTip(){
         GearRemaining := Max(0, GearTime - (currentTime - LastShopTime))
         tooltipText .= "Gears: " (GearRemaining // 60) ":" Format("{:02}", Mod(GearRemaining, 60)) "`n"
     }
-    ; if (HitListEnabled) {
-    ;     static HitListTime := 300
-    ;     HitListRemaining := Max(0, HitListTime - (currentTime - LastShopTime))
-    ;     tooltipText .= "HitList: " (HitListRemaining // 60) ":" Format("{:02}", Mod(HitListRemaining, 60)) "`n"
-    ; }
+    if (invasionEnabled) {
+        static invasionTime := 1860
+        invasionRemaining := Max(0, invasionTime - (currentTime - LastShopTime))
+        tooltipText .= "invasion: " (invasionRemaining // 60) ":" Format("{:02}", Mod(invasionRemaining, 60)) "`n"
+    }
     if (EquipBestEnabled) {
         static EquipBestTime := 300
         EquipBestRemaining := Max(0, EquipBestTime - (currentTime - LastShopTime))
@@ -905,39 +905,66 @@ ShowToolTip(){
 }
 
 
-; HitList(){
-;     if !(CheckSetting("Settings", "HitList")){
-;         return
-;     }
-;     PlayerStatus("Going to Claim hitlist!", "0x22e6a8",,false,,false)
-;     relativeMouseMove(0.5, 0.5)
-;     Sleep(500)
-;     Clickbutton("Garden")
-;     Sleep(1000)
-;     Walk(2300,Dkey)
-;     Walk(600,Wkey)
-;     Sleep(1000)
-;     Walk(3600, WKey)
-;     Sleep(1000)
-;     relativeMouseMove(0.5, 0.425)
-;     Sleep(100)
-;     Click
-;     relativeMouseMove(0.5, 0.4)
-;     Click
-;     Walk(500, Akey)
-;     Sleep(500)
-;     Send("{" Ekey "}")
-;     Sleep(1000)
-;     PlayerStatus("Claimed hitlist!", "0x22e6a8",,false)
-;     CloseClutter()
-;     return 1
+invasion(){
+    if !(CheckSetting("Settings", "invasion")){
+        return
+    }
+    PlayerStatus("Starting invasion!", "0x22e6a8",,false,,false)
+    relativeMouseMove(0.5,0.5)
+    Sleep(500)
+    capX := windowX + (windowWidth * 0.9)
+    capY := windowY + (windowHeight * 0.25)
+    capW := windowWidth * 0.1
+    capH := windowHeight * 0.225
+    pbmScreen := Gdip_BitmapFromScreen(capX "|" capY "|" capW "|" capH)
+    if (Gdip_ImageSearch(pbmScreen, bitmaps["Battle"], &OutputList, , , , , 25) = 1) {
+        Cords := StrSplit(OutputList, ",")
+        x := Cords[1] + capx
+        y := Cords[2] + capY
+        MouseMove(x, y)
+        Sleep(300)
+        Click
+        Sleep(500)
+    } else {
+        PlayerStatus("No Invasion found!", "0xe62222",,false,,false)
+        Gdip_DisposeImage(pbmScreen)
+        CloseClutter()
+        return 0
+    }
 
-; }
+    Sleep(2000)
+    Gdip_DisposeImage(pbmScreen)
+    capX := windowX + (windowWidth * 0.525)
+    capY := windowY + (windowHeight * 0.6)
+    capW := windowWidth * 0.1
+    capH := windowHeight * 0.3
+    pbmScreen := Gdip_BitmapFromScreen(capX "|" capY "|" capW "|" capH)
+    if (Gdip_ImageSearch(pbmScreen, bitmaps["Battle"], &OutputList, , , , , 25) = 1) {
+        Cords := StrSplit(OutputList, ",")
+        x := Cords[1] + capx
+        y := Cords[2] + capY
+        PlayerStatus("Invasion Started!", "0x22e6a8",,false)
+        MouseMove(x, y)
+        Sleep(300)
+        Click
+        Sleep(500)
+    } else {
+        PlayerStatus("No Invasion found!", "0xe62222",,true)
+        Gdip_DisposeImage(pbmScreen)
+        CloseClutter()
+        return 0
+    }
+    Gdip_DisposeImage(pbmScreen)
+    CloseClutter()
+    return 1
+
+}
 
 EquipBestBrainrots(){
     if !(CheckSetting("Settings", "EquipBest")){
         return
     }
+    PlayerStatus("Getting cash!", "0x22e6a8",,false,,false)
     openBag()
     pbmScreen := Gdip_BitmapFromScreen(windowX "|" windowY "|" windowWidth "|" windowHeight)
     if (Gdip_ImageSearch(pbmScreen, bitmaps["Equip Best"], &OutputList, , , , , 25) = 1) {
@@ -951,7 +978,7 @@ EquipBestBrainrots(){
     }
     Sleep(1000)
     closeBag()
-    PlayerStatus("Equipped Best Brainrots!", "0x22e6a8",,false,,false)
+    PlayerStatus("Collected Cash!", "0x22e6a8",,false,,false)
     CloseClutter()
     Gdip_DisposeImage(pbmScreen)
     return 1
@@ -962,6 +989,7 @@ F3::
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
+    invasion()
     PauseMacro()
 }
 
