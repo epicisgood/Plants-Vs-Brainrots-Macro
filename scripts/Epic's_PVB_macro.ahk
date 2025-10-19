@@ -889,7 +889,7 @@ ShowToolTip(){
         tooltipText .= "Gears: " (GearRemaining // 60) ":" Format("{:02}", Mod(GearRemaining, 60)) "`n"
     }
     if (invasionEnabled) {
-        static invasionTime := 1860
+        static invasionTime := 2100
         invasionRemaining := Max(0, invasionTime - (currentTime - LastShopTime))
         tooltipText .= "invasion: " (invasionRemaining // 60) ":" Format("{:02}", Mod(invasionRemaining, 60)) "`n"
     }
@@ -969,7 +969,7 @@ EquipBestBrainrots(){
     if (Gdip_ImageSearch(pbmScreen, bitmaps["Equip Best"], &OutputList, , , , , 25) = 1) {
         Cords := StrSplit(OutputList, ",")
         x := Cords[1] + windowX
-        y := Cords[2] + windowY
+        y := Cords[2] + windowY - 3
         MouseMove(x, y)
         Sleep(300)
         Click
@@ -988,6 +988,7 @@ F3::
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
+    EquipBestBrainrots()
     PauseMacro()
 }
 

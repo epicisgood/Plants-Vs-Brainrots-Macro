@@ -21,7 +21,7 @@ RewardChecker() {
         Rewardlist.Push("Gears")  
         Rewardlist.Push("EquipBest")      
     }
-    if (currentTime - LastInvasionTime >= 1860) {
+    if (currentTime - LastInvasionTime >= 2100) {
         LastInvasionTime := currentTime
         Rewardlist.Push("invasion")      
     }
