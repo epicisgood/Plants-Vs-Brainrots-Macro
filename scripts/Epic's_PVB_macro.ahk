@@ -841,7 +841,6 @@ MainLoop() {
     CameraCorrection()
     BuySeeds()
     BuyGears()
-    invasion()
     EquipBestBrainrots()
     loop {
         initShops()
