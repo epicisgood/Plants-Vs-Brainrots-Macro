@@ -793,9 +793,10 @@ BuyGears(){
         ActivateRoblox()
         Clickbutton("Sell")
         Sleep(1000)
+        Walk(400, Wkey)
+        Sleep(500)
         Walk(750, AKey)
         Sleep(500)
-        Walk(200, Wkey)
         Sleep(500)
         Walk(250, Akey, Skey)
         Sleep(1000)
@@ -988,7 +989,7 @@ F3::
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
-    EquipBestBrainrots()
+    BuyGears()
     PauseMacro()
 }
 
