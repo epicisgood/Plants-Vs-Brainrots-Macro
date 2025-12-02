@@ -989,7 +989,6 @@ F3::
     ActivateRoblox()
     hwnd := GetRobloxHWND()
     GetRobloxClientPos(hwnd)
-    BuyGears()
     PauseMacro()
 }
 
