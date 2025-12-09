@@ -484,11 +484,17 @@ Clickbutton(button, clickit := 1){
     return 0
 }
 
+
 ChangeCamera(type){
     Send("{" EscKey "}")
     HyperSleep(750)
     Send("{Tab}")
     HyperSleep(333)
+    loop 10 {
+        Send("{Up}")
+        Sleep(50)
+    }
+    Sleep(150)
     Send("{Down}")
     HyperSleep(333)
     Send("{Right}")
@@ -499,6 +505,7 @@ ChangeCamera(type){
     Send("{" EscKey "}")
     HyperSleep(1000)
 }
+
 
 
 checkCamera(type){  
