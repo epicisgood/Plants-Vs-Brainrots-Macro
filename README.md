@@ -12,7 +12,7 @@ A macro that automatically buys your selected seeds, and gears!
 ✅ The macro does NOT require **UI navigation** and the macro works using your **cursor**.
 
 
-<img width="450" height="500" alt="image" src="https://github.com/user-attachments/assets/324a025a-a7e9-43a1-8891-637297f3b8d5" />
+<img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/324a025a-a7e9-43a1-8891-637297f3b8d5" />
 
 
 ---
