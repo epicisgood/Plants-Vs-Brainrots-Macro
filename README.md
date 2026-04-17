@@ -1,5 +1,10 @@
 # ⚔️ Epic's Plants VS Brainrots Macro
 
+![GitHub Repo stars](https://img.shields.io/github/stars/epicisgood/Plants-Vs-Brainrots-Macro?style=flat)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/epicisgood/Plants-Vs-Brainrots-Macro/total)
+![GitHub Created At](https://img.shields.io/github/created-at/epicisgood/Plants-Vs-Brainrots-Macro)
+![GitHub License](https://img.shields.io/github/license/epicisgood/Plants-Vs-Brainrots-Macro)
+
 A macro that automatically buys your selected seeds, and gears!
 
 ✅ Supports **auto-reconnect** and sends **images via Discord webhook**.
